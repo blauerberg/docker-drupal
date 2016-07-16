@@ -1,0 +1,20 @@
+version: '2'
+services:
+  mysql:
+    image: mysql
+    #volumes:
+      #- "~/volumes/drupal/db:/var/lib/mysql"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: drupal
+      MYSQL_USER: drupal
+      MYSQL_PASSWORD: drupal
+
+  drupal:
+    image: blauerberg/drupal:8
+    links:
+      - mysql
+    #volumes:
+      #- "~/volumes/drupal/web:/var/www/html"
+    ports:
+      - "80:80"
