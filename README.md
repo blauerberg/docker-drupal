@@ -1,4 +1,4 @@
-# docker-drupal# 
+# docker-drupal
 
 Drupal docker image without a DB.
 This image is designed to be used with the [official mysql image](https://hub.docker.com/_/mysql) and include below:
