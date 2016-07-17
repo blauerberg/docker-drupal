@@ -21,7 +21,7 @@ RUN { \
 		echo 'opcache.enable_cli=1'; \
 	} > /usr/local/etc/php/conf.d/opcache-recommended.ini
 
-RUN apt-get update && apt-get install -y zsh tmux git rsync vim supervisor \
+RUN apt-get update && apt-get mysql-client install -y zsh tmux git rsync vim supervisor \
         && apt-get autoclean \
         && rm -rf /var/lib/apt/lists/*
 

@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y libpng12-dev libjpeg-dev libpq-dev \
         && apt-get autoclean \
         && rm -rf /var/lib/apt/lists/*
 
-RUN apt-get update && apt-get install -y zsh tmux git rsync vim supervisor \
+RUN apt-get update && apt-get install -y mysql-client zsh tmux git rsync vim supervisor \
         && apt-get autoclean \
         && rm -rf /var/lib/apt/lists/*
 
