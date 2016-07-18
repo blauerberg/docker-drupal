@@ -1,7 +1,7 @@
 FROM php:7.0-apache
 MAINTAINER Yoshikazu Aoyama <yskz.aoyama@gmail.com>
 
-ENV DRUPAL_VERSION 8.1.6
+ENV DRUPAL_VERSION 8.1.7
 
 RUN a2enmod rewrite
 
