@@ -3,7 +3,9 @@
 Drupal docker image without a DB.
 This image is designed to be used with the [official mysql image](https://hub.docker.com/_/mysql) and include below:
   - apache2
-  - drupal
+  - php 7
+  - drupal 7 or 8 (depending on tag)
+  - composer
   - drush
   - drupal console
 
@@ -24,6 +26,8 @@ $ docker run -d -p 80:80 --link drupaldb:mysql blauerberg/drupal:7
 $ docker run -d -p 80:80 --link drupaldb:mysql blauerberg/drupal:8
 
 # if you want to mount host directory as drupal root, you can use "-v" option:
+# if drupal source code doesn't exists on your host directory, it will be copy to your host directory from container.
+# In this case, you might wait a about one minutes to copy their resources at first boot time.
 $ docker run -d -p 80:80 --link drupaldb:mysql -v /some/host/path:/var/www/html blauerberg/drupal
 
 # you can also use docker-compose to configure your services.
