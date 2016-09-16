@@ -1,8 +1,6 @@
 FROM php:7.0-apache
 MAINTAINER Yoshikazu Aoyama <yskz.aoyama@gmail.com>
 
-ENV DRUPAL_VERSION 7.50
-
 RUN a2enmod rewrite
 
 # install the PHP extensions we need
@@ -37,6 +35,7 @@ RUN echo "[program:apache2]" > /etc/supervisor/conf.d/apache2.conf \
 
 RUN mkdir -p /var/lock/apache2 /var/run/apache2 /var/run/sshd /var/log/supervisor
 
+ENV DRUPAL_VERSION 7.50
 RUN curl "https://ftp.drupal.org/files/projects/drupal-${DRUPAL_VERSION}.tar.gz" -o /usr/local/src/drupal-${DRUPAL_VERSION}.tar.gz
 
 EXPOSE 80
