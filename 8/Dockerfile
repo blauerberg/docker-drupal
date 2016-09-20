@@ -25,19 +25,19 @@ RUN apt-get update && apt-get install -y mysql-client zsh tmux git rsync vim sup
 
 RUN curl -sS https://getcomposer.org/installer | php \
         && mv composer.phar /usr/local/bin/composer \
-        && ln -s /usr/local/bin/composer /usr/bin/composer \
-        && git clone https://github.com/drush-ops/drush.git /usr/local/src/drush \
-        && cd /usr/local/src/drush \
-        && ln -s /usr/local/src/drush/drush /usr/bin/drush \
-        && composer install \
-        && rm -rf .git
+        && ln -s /usr/local/bin/composer /usr/bin/composer
 
-RUN  git clone https://github.com/hechoendrupal/DrupalConsole  /usr/local/src/DrupalConsole \
-        && cd /usr/local/src/DrupalConsole \
-        && ln -s /usr/local/src/DrupalConsole/bin/drupal /usr/bin/drupal \
-        && composer install \
-        && /usr/bin/drupal init --override -y \
-        && rm -rf .git
+RUN /usr/local/bin/composer global require "hirak/prestissimo"
+
+ENV DRUSH_VERSION 8.x
+RUN /usr/local/bin/composer global require "drush/drush:${DRUSH_VERSION}" \
+        && ln -s ~/.composer/vendor/bin/drush /usr/local/bin/drush \
+        && /usr/local/bin/drush -y init
+
+ENV DRUPAL_CONSOLE_VERSION 1.0.0-beta5
+RUN /usr/local/bin/composer global require "drupal/console:${DRUPAL_CONSOLE_VERSION}" \
+        && ln -s ~/.composer/vendor/bin/drupal /usr/local/bin/drupal \
+        && /usr/local/bin/drupal init --override -y
 
 RUN echo "[program:apache2]" > /etc/supervisor/conf.d/apache2.conf \
         && echo 'command=/bin/bash -c "source /etc/apache2/envvars && exec /usr/sbin/apache2 -DFOREGROUND"' >> /etc/supervisor/conf.d/apache2.conf
