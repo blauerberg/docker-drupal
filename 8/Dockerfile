@@ -44,7 +44,7 @@ RUN echo "[program:apache2]" > /etc/supervisor/conf.d/apache2.conf \
 
 RUN mkdir -p /var/lock/apache2 /var/run/apache2 /var/run/sshd /var/log/supervisor
 
-ENV DRUPAL_VERSION 8.1.7
+ENV DRUPAL_VERSION 8.1.9
 RUN curl "https://ftp.drupal.org/files/projects/drupal-${DRUPAL_VERSION}.tar.gz" | tar zx -C /usr/local/src
 
 EXPOSE 80
